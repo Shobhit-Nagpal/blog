@@ -8,6 +8,8 @@ const indexRouter = require("./routes/index");
 const app = express();
 const port = 4000;
 
+mongoose.set("strictQuery", false);
+
 const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err) => console.log(err));

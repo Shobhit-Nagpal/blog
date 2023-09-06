@@ -11,6 +11,8 @@ router.get("/post/:id", post_controller.post_get);
 router.put("/post/:id", post_controller.post_put);
 router.delete("/post/:id", post_controller.post_delete);
 
-router.post("/login", auth_controller.auth_post);
+router.post("/login", auth_controller.login_post);
+router.post("/register", auth_controller.register_post);
+router.post("/admin", auth_controller.admin_post);
 
 module.exports = router;

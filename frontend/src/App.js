@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import "./styles/App.css";
+import "./styles/index.css";
+import { UserContextProvider } from './context/UserContext';
+import IndexPage from "./pages/IndexPage";
+import PostPage from "./pages/PostPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <UserContextProvider> 
+            <Routes>
+                <Route path="/" element={ <IndexPage /> } />
+                <Route path="/post/:id" element={ <PostPage /> } />
+            </Routes>
+        </UserContextProvider>
+      </div>
   );
 }
 

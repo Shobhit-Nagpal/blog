@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
@@ -18,6 +19,7 @@ async function main() {
     await mongoose.connect(mongoDB);
 }
 
+app.use(cors({credentials: true, origin: "http://localhost:3000"}));
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler

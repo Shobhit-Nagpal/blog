@@ -19,14 +19,14 @@ exports.register_post = [
     asyncHandler( async (req ,res, next) => {
         const errors = validationResult(req);
         const userExists = await User.find({ username: req.body.username }).exec();
-
-        if (userExists) {
-            res.json({errors: ["User already exists"]});
+        
+        if (userExists && userExists.length > 0) {
+            res.status(400).json({errors: ["User already exists"]});
             return;
         }
 
         if (!errors.isEmpty()) {
-            res.json({ errors: errors.array() });
+            res.status(400).json({ errors: errors.array() });
         }
         else {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);

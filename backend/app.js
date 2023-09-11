@@ -9,12 +9,12 @@ const indexRouter = require("./routes/index");
 const app = express();
 const port = 4000;
 
+app.use(express.json());
 mongoose.set("strictQuery", false);
 
 const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err) => console.log(err));
-
 async function main() {
     await mongoose.connect(mongoDB);
 }
@@ -30,12 +30,12 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  const message = err.message;
+  const error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ message, error });
 });
 
 app.listen(port, () => console.log(`Server is up and running on port ${port}`));

@@ -23,7 +23,7 @@ function Navbar() {
     return (
         <div className="navbar">
             <div className="navbar_logo">
-                <p>Logo</p>
+                <p>[s]</p>
             </div>
 
             {userInfo && userInfo.isAdmin === true && (

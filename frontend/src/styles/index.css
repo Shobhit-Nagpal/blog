@@ -4,6 +4,7 @@
     --background-color: #242424;
     --primary-color: #8B19D1;
     --white-color: #ffffff;
+    --green-color: #33B249;
     --project-bg-color: #202020;
     --font-family: 'Sora', sans-serif;
 }
@@ -29,4 +30,11 @@ body {
 
 img {
     max-width: 100%;
+}
+
+button {
+    padding: 1.3rem;
+    border-radius: 1rem;
+    border-style: none;
+    font-size: 1.6rem;
 }

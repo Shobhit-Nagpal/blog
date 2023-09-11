@@ -6,6 +6,7 @@ import IndexPage from "./pages/IndexPage";
 import PostPage from "./pages/PostPage";
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/post/:id" element={ <PostPage /> } />
                 <Route path="/dashboard" element={ <DashboardPage /> } />
                 <Route path="/login" element={ <LoginPage /> } />
+                <Route path="/register" element={ <RegisterPage />} />
             </Routes>
         </UserContextProvider>
       </div>

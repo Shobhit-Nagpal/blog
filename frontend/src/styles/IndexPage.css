@@ -1,3 +1,10 @@
 .index {
     overflow-y: auto;
 }
+
+.index_heading {
+    color: var(--white-color);
+    text-align: center;
+    font-size: 5rem;
+    margin: 3rem;
+}

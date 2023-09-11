@@ -8,10 +8,10 @@ function LoginForm() {
         <h1 className="login_form_heading"> Login </h1>
         <form>
                 <label htmlFor="username">Username</label>
-                <input type="text" placeholder="Username" required={true} />
+                <input type="text" placeholder="Username" name="username" required={true} />
                 
                 <label htmlFor="password">Password</label>
-                <input type="password" placeholder="Password" required={true} />
+                <input type="password" placeholder="Password" name="password" required={true} />
 
                 <button>Login</button>
         </form>

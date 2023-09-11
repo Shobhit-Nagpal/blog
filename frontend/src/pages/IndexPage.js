@@ -7,6 +7,7 @@ function IndexPage() {
     return (
         <div className="index">
             <Navbar />
+            <h1 className="index_heading">Posts</h1>
             <Posts />
             <Footer />
         </div>

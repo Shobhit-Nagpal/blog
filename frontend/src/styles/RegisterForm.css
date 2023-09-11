@@ -1,4 +1,4 @@
-.login_form {
+.register_form {
     margin-top: 10rem;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     min-height: 100vh;
 }
 
-.login_form form {
+.register_form form {
     margin-top: 3rem;
     background-color: var(--project-bg-color);
     padding: 6rem;
@@ -15,29 +15,29 @@
 }
 
 
-.login_form_heading {
+.register_form_heading {
     color: var(--white-color);
     font-size: 4rem;
     margin-bottom: 3rem;
 }
 
-.login_form form > label, .login_form form > input {
+.register_form form > label, .login_form form > input {
     display: block;
 }
 
-.login_form form > label {
+.register_form form > label {
     color: var(--white-color);
     font-size: 2.5rem;
 }
 
-.login_form form > input {
+.register_form form > input {
     width: 30rem;
     height: 3.5rem;
     margin-top: 1rem;
     margin-bottom: 4rem;
 }
 
-.login_form > form > button {
+.register_form > form > button {
     margin: 0 auto;
     display: block;
     background-color: var(--green-color);

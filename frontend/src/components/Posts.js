@@ -1,5 +1,6 @@
 import Post from "./Post";
 import "../styles/Posts.css";
+import "../styles/index.css";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
@@ -9,8 +10,6 @@ function Posts({ fromDashboard }) {
 
     return (
         <div className="posts">
-            <Post />
-            <Post />
             <Post />
             {fromDashboard && (
             <Post />

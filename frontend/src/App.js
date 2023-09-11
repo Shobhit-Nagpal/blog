@@ -4,6 +4,7 @@ import "./styles/index.css";
 import { UserContextProvider } from './context/UserContext';
 import IndexPage from "./pages/IndexPage";
 import PostPage from "./pages/PostPage";
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={ <IndexPage /> } />
                 <Route path="/post/:id" element={ <PostPage /> } />
+                <Route path="/dashboard" element={ <DashboardPage /> } />
             </Routes>
         </UserContextProvider>
       </div>

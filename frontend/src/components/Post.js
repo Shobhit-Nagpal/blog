@@ -1,7 +1,11 @@
 import "../styles/Post.css";
 import "../styles/index.css";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 function Post() {
+
+    const { userInfo, setUserInfo } = useContext(UserContext);
 
     return (
         <div className="post">
@@ -10,10 +14,20 @@ function Post() {
             </div>
 
             <div className="post_details">
-                <h2 className="post_details_title">Title</h2>
-                <p className="post_details_author">Shobhit Nagpal</p>
-                <time className="post_details_date">25-09-2002</time>
+                <div className="post_details_info">
+                    <h2 className="post_details_title">Title</h2>
+                    <p className="post_details_author">Shobhit Nagpal</p>
+                    <time className="post_details_date">25-09-2002</time>
+                </div>
+
+                {userInfo && userInfo.isAdmin === true && (
+                <div className="post_details_btns">
+                    <button>Publish</button>
+                    <button>Delete</button>
+                </div>
+                )}
             </div>
+
         </div>
     )
 }

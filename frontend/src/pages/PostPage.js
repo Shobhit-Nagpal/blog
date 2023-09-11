@@ -6,7 +6,7 @@ function PostPage() {
 
     return (
         <div>
-            Post page brother
+            Post page brother {id}
         </div>
     )
 }

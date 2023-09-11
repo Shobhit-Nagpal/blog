@@ -1,5 +1,5 @@
 .register_form {
-    margin-top: 10rem;
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,6 @@
 }
 
 .register_form form {
-    margin-top: 3rem;
     background-color: var(--project-bg-color);
     padding: 6rem;
     border-radius: 2rem;
@@ -42,4 +41,15 @@
     display: block;
     background-color: var(--green-color);
     color: var(--white-color);
+}
+
+@media screen and (max-width: 450px) {
+    .register_form form {
+        max-width: 320px;
+        height: auto;
+    }
+
+    .register_form form > input {
+        width: 20rem;;
+    }
 }

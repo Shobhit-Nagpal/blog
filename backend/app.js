@@ -1,6 +1,7 @@
 const createError = require("http-errors");
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -10,6 +11,7 @@ const app = express();
 const port = 4000;
 
 app.use(express.json());
+app.use(cookieParser());
 mongoose.set("strictQuery", false);
 
 const mongoDB = process.env.MONGODB_URI;

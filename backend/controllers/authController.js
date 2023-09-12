@@ -3,10 +3,40 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
-exports.login_post =  asyncHandler(async (req, res, next) => {
-    res.send("Yet to implement user post");
-});
+exports.login_post = [
+    body("username", "Username should be a minimum of 4 character").trim().isLength({ min: 4 }).escape(),
+    body("password", "Password should be a minimum of 8 characters").trim().isLength({ min: 8 }).escape(),
+    asyncHandler( async (req, res, next) => {
+        const errors = validationResult(req);
+
+        const { username, password } = req.body;
+
+        const user = await User.find({ username: username }).exec();
+
+        if (!user) {
+            res.status(400).json({ errors: ["User does not exist"] });
+            return;
+        }
+
+        if (!errors.isEmpty()) {
+            res.status(400).json({ errors: errors.array() });
+        }
+        else {
+
+            const passwordMatches = await bcrypt.compare(password, user.password);
+            if (passwordMatches) {
+                jwt.sign({ username: username, id: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: "12h" }, function (err, token) {
+                    res.cookie("token", token).json({ username: username, id: user._id });;
+                });
+            }
+            else {
+                res.status(400).json({ errors: ["Incorrect password"] });
+            }
+        }
+    })
+]; 
 
 exports.register_post = [
     body("username", "Username should be minimum 4 characters").trim().isLength({ min: 4 }).escape(),

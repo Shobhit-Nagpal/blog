@@ -13,7 +13,8 @@ exports.login_post = [
 
         const { username, password } = req.body;
 
-        const user = await User.find({ username: username }).exec();
+
+        const user = await User.findOne({ username: username }).exec();
 
         if (!user) {
             res.status(400).json({ errors: ["User does not exist"] });
@@ -27,7 +28,7 @@ exports.login_post = [
 
             const passwordMatches = await bcrypt.compare(password, user.password);
             if (passwordMatches) {
-                jwt.sign({ username: username, id: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: "12h" }, function (err, token) {
+                jwt.sign({ username: username, id: user._id, isAdmin: user.isAdmin}, process.env.JWT_SECRET_KEY, {}, function (err, token) {
                     res.cookie("token", token).json({ username: username, id: user._id });;
                 });
             }
@@ -36,7 +37,11 @@ exports.login_post = [
             }
         }
     })
-]; 
+];
+
+exports.logout_post = asyncHandler( async (req, res, next) => {
+   res.cookie("token", "").json("Logged out"); 
+});
 
 exports.register_post = [
     body("username", "Username should be minimum 4 characters").trim().isLength({ min: 4 }).escape(),
@@ -48,9 +53,10 @@ exports.register_post = [
     }),
     asyncHandler( async (req ,res, next) => {
         const errors = validationResult(req);
-        const userExists = await User.find({ username: req.body.username }).exec();
+
+        const userExists = await User.findOne({ username: req.body.username }).exec();
         
-        if (userExists && userExists.length > 0) {
+        if (userExists) {
             res.status(400).json({errors: ["User already exists"]});
             return;
         }
@@ -73,6 +79,60 @@ exports.register_post = [
     })
 ];
 
-exports.admin_post = asyncHandler(async (req, res, next) => {
-    res.send("Yet to implement admin post");
+exports.admin_post = [
+    body("username", "Username should be minimum 4 characters").trim().isLength({ min: 4 }).escape(),
+    body("password", "Password should be minimum 4 characters").trim().isLength({ min: 8 }).escape(),
+    asyncHandler( async (req, res, next) => {
+        const errors = validationResult(req);
+        
+        const { username, password } = req.body;
+
+        const { token } = req.cookies;
+
+        const userExists = await User.findOne({ username: username }).exec();
+
+        if (!userExists) {
+            res.status(400).json({ errors: ["User does not exist"] });
+            return;
+        }
+
+        if (!errors.isEmpty()) {
+            res.status(400).json({ errors: errors.array() });
+        }
+
+        jwt.verify(token, process.env.JWT_SECRET_KEY, async function (err, info) {
+
+            if (err) return next(err);
+            
+            if (String(password) === String(process.env.ADMIN_PASSWORD)) {
+                const _user = new User({
+                    username: userExists.username,
+                    password: userExists.password,
+                    _id: userExists._id,
+                    isAdmin: true,
+                    firstName: userExists.firstName,
+                    familyName: userExists.familyName
+                });
+
+                const updatedUser = await User.findByIdAndUpdate(userExists._id, _user, {});
+                res.json({ message: "Admin created!" });
+
+
+            }
+            else {
+                res.status(400).json({ errors: ["Wrong password"] });
+            }
+        });
+
+    })
+];
+
+exports.profile_get = asyncHandler(async (req, res, next) => {
+   const { token } = req.cookies
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, function (err, info) {
+        if (err) throw err;
+
+        res.json(info);
+    });
 });

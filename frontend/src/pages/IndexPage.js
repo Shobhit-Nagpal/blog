@@ -8,7 +8,7 @@ function IndexPage() {
         <div className="index">
             <Navbar />
             <h1 className="index_heading">Posts</h1>
-            <Posts />
+            <Posts fromDashboard={false}/>
             <Footer />
         </div>
     )

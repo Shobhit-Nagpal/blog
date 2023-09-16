@@ -11,7 +11,9 @@ router.get("/post/:id", post_controller.post_get);
 router.put("/post/:id", post_controller.post_put);
 router.delete("/post/:id", post_controller.post_delete);
 
+router.get("/profile", auth_controller.profile_get);
 router.post("/login", auth_controller.login_post);
+router.post("/logout", auth_controller.logout_post);
 router.post("/register", auth_controller.register_post);
 router.post("/admin", auth_controller.admin_post);
 

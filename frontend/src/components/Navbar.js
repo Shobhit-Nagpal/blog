@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import "../styles/index.css";
 import "../styles/Navbar.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from "react-router-dom";
 
 function Menu() {
 
   return (  
         <>
-            <p>Dashboard</p>
-            <p>Logout</p>
+            <Link to={ "/dashboard" }>Dashboard</Link>
+            <button>Logout</button>
         </>
   )
 }
@@ -20,17 +21,35 @@ function Navbar() {
     const { userInfo, setUserInfo } = useContext(UserContext);
     const [toggleMenu, setToggleMenu] = useState(false);
 
+    async function logout() {
+        await fetch("http://localhost:4000/logout", {
+            method: "POST",
+            credentials: "include"
+        });
+
+        setUserInfo(null);
+    }
+
+    useEffect(() => {
+       fetch("http://localhost:4000/profile", {
+            credentials: "include"
+       })
+        .then(res => res.json())
+        .then(info => setUserInfo(info));
+    }, []);
+
     return (
         <div className="navbar">
             <div className="navbar_logo">
-                <p>[s]</p>
+                <Link to={ "/" }>[s]</Link>
             </div>
 
             {userInfo && userInfo.isAdmin === true && (
 
                 <>
                 <div className="navbar_items">
-                    <Menu />
+                    <Link to={ "/dashboard" }>Dashboard</Link>
+                    <a onClick={logout}>Logout</a>
                 </div>
 
                 <div className="navbar_menu">
@@ -38,7 +57,8 @@ function Navbar() {
 
                     {toggleMenu && (
                         <div className="navbar_menu_container">
-                            <Menu />
+                            <Link to={ "/dashboard" }>Dashboard</Link>
+                            <button>Logout</button>
                         </div>
                     )}
                 </div>

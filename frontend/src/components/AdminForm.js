@@ -1,17 +1,17 @@
-import "../styles/LoginForm.css";
+import "../styles/AdminForm.css";
 import "../styles/index.css";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-function LoginForm() {
+function AdminForm() {
         
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
 
-    async function loginUser(e) {
+    async function adminUser(e) {
         e.preventDefault();
-        const response = await fetch("http://localhost:4000/login", {
+        const response = await fetch("http://localhost:4000/admin", {
             method: "POST",
             body: JSON.stringify({ username, password }),
             credentials: "include",
@@ -19,7 +19,7 @@ function LoginForm() {
         });
 
         if (response.status !== 200) {
-            alert("Login failed");
+            alert("Verify failed");
             return;
         }
         else {
@@ -32,20 +32,20 @@ function LoginForm() {
     }
 
     return (
-    <div className="login_form">
-        <h1 className="login_form_heading"> Login </h1>
-        <form onSubmit={ loginUser }>
+    <div className="admin_form">
+        <h1 className="admin_form_heading"> Verify </h1>
+        <form onSubmit={ adminUser }>
                 <label htmlFor="username">Username</label>
                 <input type="text" placeholder="Username" name="username" required={true} value={ username } onChange={ (e) => setUsername(e.target.value) } />
                 
                 <label htmlFor="password">Password</label>
                 <input type="password" placeholder="Password" name="password" required={true} value={ password } onChange={ (e) => setPassword(e.target.value) } />
 
-                <button>Login</button>
+                <button>Verify</button>
         </form>
     </div>
     )
 
 }
 
-export default LoginForm;
+export default AdminForm;

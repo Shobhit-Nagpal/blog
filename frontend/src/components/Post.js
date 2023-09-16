@@ -3,7 +3,7 @@ import "../styles/index.css";
 import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
 
-function Post() {
+function Post({ fromDashboard }) {
 
     const { userInfo, setUserInfo } = useContext(UserContext);
 
@@ -20,7 +20,7 @@ function Post() {
                     <time className="post_details_date">25-09-2002</time>
                 </div>
 
-                {userInfo && userInfo.isAdmin === true && (
+                {userInfo && userInfo.isAdmin === true && fromDashboard && (
                 <div className="post_details_btns">
                     <button>Publish</button>
                     <button>Delete</button>

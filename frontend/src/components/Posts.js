@@ -10,9 +10,13 @@ function Posts({ fromDashboard }) {
 
     return (
         <div className="posts">
-            <Post />
+            <Post fromDashboard={fromDashboard} />
+
             {fromDashboard && (
-            <Post />
+            <>
+            <Post fromDashboard={fromDashboard} />
+            <Post fromDashboard={fromDashboard} />
+            </>
             )}
         </div>
     )

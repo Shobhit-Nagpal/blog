@@ -72,6 +72,7 @@ function Post({ id, title, author, createdAt, content, coverImg, fromDashboard, 
                 {userInfo && userInfo.isAdmin === true && fromDashboard && (
                 <div className="post_details_btns">
                     { !published ? (<button onClick={ () => publishPost() }>Publish</button>) : (<button onClick={ () => archivePost() }>Archive</button>)}
+                    <Link to={ `/edit/${id}` }><button>Edit</button></Link>
                     <button onClick={ () => deletePost() }>Delete</button>
                 </div>
                 )}

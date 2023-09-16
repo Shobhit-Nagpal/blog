@@ -14,7 +14,13 @@ exports.post_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.post_get = asyncHandler(async (req, res, next) => {
-    res.send("Yet to implement get post");
+    const { id } = req.params;
+    const { token } = req.cookies;
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, info) => {
+        const post = await Post.findById(id).exec();
+        res.json(post);
+    });
 });
 
 exports.post_post = [

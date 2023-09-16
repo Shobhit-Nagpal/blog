@@ -5,7 +5,7 @@ const auth_controller = require("../controllers/authController");
 
 router.get("/", post_controller.post_list);
 
-router.post("/post", post_controller.post_put);
+router.post("/post", post_controller.post_post);
 
 router.get("/post/:id", post_controller.post_get);
 router.put("/post/:id", post_controller.post_put);

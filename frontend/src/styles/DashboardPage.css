@@ -1,0 +1,6 @@
+.dashboard_header {
+    color: var(--white-color);
+    text-align: center;
+    font-size: 3.5rem;
+    margin-top: 3rem;
+}

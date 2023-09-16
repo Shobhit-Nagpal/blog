@@ -1,23 +1,27 @@
 import Post from "./Post";
 import "../styles/Posts.css";
 import "../styles/index.css";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 function Posts({ fromDashboard }) {
 
-    const { userInfo, setUserInfo } = useContext(UserContext);
+
+    const [posts, setPosts] = useState([]);
+
+    const filteredPosts = fromDashboard ? posts : posts.filter(post => post.published);
+
+    useEffect(() => {
+        const response = fetch("http://localhost:4000/")
+                        .then(res => res.json())
+                        .then(posts => setPosts(posts))
+                        .catch((err) => console.log(err));
+    }, []);
+
 
     return (
         <div className="posts">
-            <Post fromDashboard={fromDashboard} />
-
-            {fromDashboard && (
-            <>
-            <Post fromDashboard={fromDashboard} />
-            <Post fromDashboard={fromDashboard} />
-            </>
-            )}
+            { filteredPosts.map( (post) => (<Post key={post._id} title={post.title} content={post.content} id={post._id} author={post.author.username} coverImg={post.coverImg} createdAt={post.createdAt} published={post.published} fromDashboard={fromDashboard} /> ))}
         </div>
     )
 }

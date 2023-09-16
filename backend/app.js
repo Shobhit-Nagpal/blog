@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const multer = require("multer");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
@@ -22,6 +23,7 @@ async function main() {
 }
 
 app.use(cors({credentials: true, origin: "http://localhost:3000"}));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler

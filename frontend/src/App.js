@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
+import CreatePostPage from './pages/CreatePostPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/login" element={ <LoginPage /> } />
                 <Route path="/register" element={ <RegisterPage />} />
                 <Route path="/admin" element={ <AdminPage />} />
+                <Route path="/create" element={ <CreatePostPage />} />
             </Routes>
         </UserContextProvider>
       </div>

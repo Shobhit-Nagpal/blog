@@ -6,16 +6,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from "react-router-dom";
 
-function Menu() {
-
-  return (  
-        <>
-            <Link to={ "/dashboard" }>Dashboard</Link>
-            <button>Logout</button>
-        </>
-  )
-}
-
 function Navbar() {
 
     const { userInfo, setUserInfo } = useContext(UserContext);
@@ -49,6 +39,7 @@ function Navbar() {
                 <>
                 <div className="navbar_items">
                     <Link to={ "/dashboard" }>Dashboard</Link>
+                    <Link to={ "/create" }>Create post</Link>
                     <a onClick={logout}>Logout</a>
                 </div>
 
@@ -58,6 +49,7 @@ function Navbar() {
                     {toggleMenu && (
                         <div className="navbar_menu_container">
                             <Link to={ "/dashboard" }>Dashboard</Link>
+                            <Link to={ "/create" }>Create post</Link>
                             <button>Logout</button>
                         </div>
                     )}

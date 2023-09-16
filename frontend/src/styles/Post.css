@@ -15,10 +15,11 @@
     margin-top: 5rem;
     display: flex;
     gap: 5rem;
+    align-items: center;
 }
 
 .post_details_title {
-    font-size: 6rem;
+    font-size: 4.5rem;
     margin-bottom: 2rem;
 }
 
@@ -28,8 +29,9 @@
 
 .post_img img {
     object-fit: contain;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
+    max-height: 50rem;
 }
 
 .post_details_author, .post_details_date {
@@ -54,6 +56,10 @@
 
     .post_details {
         text-align: center;
+    }
+
+    .post_details_btns{
+        justify-content: center;
     }
 }
 

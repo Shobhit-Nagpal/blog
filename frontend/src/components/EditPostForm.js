@@ -43,7 +43,7 @@ function EditPostForm() {
     }, []);
 
     if (redirect) {
-        return <Navigate to={ "/dashboard" } />
+        return <Navigate to={ `/post/${id}` } />
     }
 
     return (

@@ -9,7 +9,7 @@ require("dotenv").config();
 const upload = multer({ dest: "uploads/"});
 
 exports.post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find({}).populate("author", ["username"]).sort({ createdAt: -1 }).exec();
+    const allPosts = await Post.find({}).populate("author", ["username"]).sort({ createdAt: 1 }).exec();
     res.json(allPosts);
 });
 

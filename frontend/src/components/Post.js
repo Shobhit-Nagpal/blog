@@ -52,7 +52,7 @@ function Post({ id, title, author, createdAt, content, coverImg, fromDashboard, 
     }
 
     if (redirect) {
-        return <Navigate to={ `/post/${id}` } />
+        return <Navigate to={ "/" } />
     }
 
 

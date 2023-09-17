@@ -4,3 +4,18 @@
     font-size: 3.5rem;
     margin-top: 3rem;
 }
+
+.dashboard_auth_container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard_auth_container p {
+    color: var(--white-color);
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 3rem;
+}

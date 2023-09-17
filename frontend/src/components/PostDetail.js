@@ -30,7 +30,7 @@ function PostDetail() {
                 <img src={"http://localhost:4000/" + postInfo.coverImg} alt="" />
             </div>
 
-            {userInfo && typeof userInfo !== "undefined" && (
+            {userInfo && typeof userInfo.username !== "undefined" && (
                 <div className="post_detail_btns">
                     <Link to={ `/edit/${id}` }><button>Edit</button></Link>
                 </div>

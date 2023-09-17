@@ -37,7 +37,7 @@
     color: var(--white-color);
 }
 
-.post_detail_contents date {
+.post_detail_contents time {
     font-size: 1.5rem;
     margin-bottom: 3rem;
 }

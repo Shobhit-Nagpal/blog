@@ -13,13 +13,13 @@ function DashboardPage() {
     return (
         <div className="dashboard">
             <Navbar />
-            {userInfo ? (<>
+            {userInfo && typeof userInfo.username !== "undefined" ? (<>
                 <h1 className="dashboard_header">Dashboard</h1> 
                 <Posts fromDashboard={true}/>
                 </>)
                 : 
                 (<div className="dashboard_auth_container">
-                    <p>Please log in as adming to access dashboard</p>
+                    <p>Please log in as admin to access dashboard</p>
                 </div>)}
             <Footer />
         </div>

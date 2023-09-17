@@ -25,7 +25,8 @@ function Navbar() {
             credentials: "include"
        })
         .then(res => res.json())
-        .then(info => setUserInfo(info));
+        .then(info => setUserInfo(info))
+        .catch((err) => console.log(err));
     }, []);
 
     return (
@@ -40,7 +41,7 @@ function Navbar() {
                 <div className="navbar_items">
                     <Link to={ "/dashboard" }>Dashboard</Link>
                     <Link to={ "/create" }>Create post</Link>
-                    <a onClick={logout}>Logout</a>
+                    <a onClick={() => { logout() }}>Logout</a>
                 </div>
 
                 <div className="navbar_menu">
@@ -50,7 +51,7 @@ function Navbar() {
                         <div className="navbar_menu_container">
                             <Link to={ "/dashboard" }>Dashboard</Link>
                             <Link to={ "/create" }>Create post</Link>
-                            <button>Logout</button>
+                            <a onClick={() => { logout() }}>Logout</a>
                         </div>
                     )}
                 </div>

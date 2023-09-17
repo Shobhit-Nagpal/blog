@@ -37,7 +37,7 @@ function PostDetail() {
             )}
 
             <div className="post_detail_contents">
-                <date className="post_detail_contents_date">{ postInfo.createdAt }</date>
+                <time className="post_detail_contents_date">{ postInfo.createdAt }</time>
                 <div className="post_detail_contents_content" dangerouslySetInnerHTML={{ __html: postInfo.content }}/>
             </div>
         </div>

@@ -131,8 +131,12 @@ exports.profile_get = asyncHandler(async (req, res, next) => {
    const { token } = req.cookies
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, function (err, info) {
-        if (err) throw err;
+        if (err) {
+            console.log(err);
+            res.status(403).json({ message: "Not authorized" });
+        }
 
         res.json(info);
     });
+
 });

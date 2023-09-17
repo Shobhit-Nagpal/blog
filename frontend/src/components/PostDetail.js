@@ -1,4 +1,5 @@
 import "../styles/PostDetail.css";
+import {formatISO9075} from "date-fns";
 import "../styles/index.css";
 import { Link, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -37,7 +38,7 @@ function PostDetail() {
             )}
 
             <div className="post_detail_contents">
-                <time className="post_detail_contents_date">{ postInfo.createdAt }</time>
+                <time className="post_detail_contents_date">{ formatISO9075(new Date(postInfo.createdAt), {representation: "date"}) }</time>
                 <div className="post_detail_contents_content" dangerouslySetInnerHTML={{ __html: postInfo.content }}/>
             </div>
         </div>

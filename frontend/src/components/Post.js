@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
-function Post({ id, title, author, createdAt, content, coverImg, fromDashboard, published }) {
+function Post({ id, title, author, formatted_createdAt, createdAt, content, coverImg, fromDashboard, published }) {
 
     const { userInfo, setUserInfo } = useContext(UserContext);
     const [redirect, setRedirect] = useState(false);
@@ -66,7 +66,7 @@ function Post({ id, title, author, createdAt, content, coverImg, fromDashboard, 
                 <div className="post_details_info">
                     <Link to={ `/post/${id}` }><h2 className="post_details_title">{ title }</h2></Link>
                     <p className="post_details_author">{ author }</p>
-                    <time className="post_details_date">{ createdAt }</time>
+                    <time className="post_details_date">{ formatted_createdAt }</time>
                 </div>
 
                 {userInfo && userInfo.isAdmin === true && fromDashboard && (
